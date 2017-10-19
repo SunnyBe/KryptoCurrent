@@ -20,10 +20,12 @@ import java.util.List;
 public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapter.ViewHolder> {
     Context context;
     List<Currency> currencies;
+//    Currency currency;
 
     public CurrencyListAdapter(Context context, List<Currency> currencies) {
         this.context = context;
         this.currencies = currencies;
+        //this.currency = currency;
     }
 
     @Override
@@ -37,12 +39,12 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
     }
 
     @Override
-    public void onBindViewHolder(CurrencyListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CurrencyListAdapter.ViewHolder holder, final int position) {
         Currency currency = currencies.get(position);
 
-        holder.btcToCurrency.setText(currency.getBtcConvertValue());
-        holder.ethToCurrency.setText(currency.getEthConvertValue());
-        holder.currencySymbol.setText("Unknown");
+        holder.btcToCurrency.setText(String.valueOf(currency.getBtcToCurrency()));
+        holder.ethToCurrency.setText(String.valueOf(currency.getEtcToCurrency()));
+        holder.currencySymbol.setText("USD");
 
     }
 

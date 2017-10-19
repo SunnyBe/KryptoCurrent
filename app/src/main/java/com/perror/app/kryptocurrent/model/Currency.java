@@ -1,31 +1,20 @@
 package com.perror.app.kryptocurrent.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by ndu on 10/17/17.
  */
 
 public class Currency {
-    private String btcConvertValue;
-    private String ethConvertValue;
-    private String symbol;
-    private Double valueToConvert;
+    private static String symbol;
+    private double btcToCurrency;
+    private double etcToCurrency;
 
-    CurrencyResponse btcToCurrency;
+    private double ValueToConvert;
 
-    public String getBtcConvertValue() {
-        return btcConvertValue;
-    }
-
-    public void setBtcConvertValue(String btcConvertValue) {
-        this.btcConvertValue = btcConvertValue;
-    }
-
-    public String getEthConvertValue() {
-        return ethConvertValue;
-    }
-
-    public void setEthConvertValue(String ethConvertValue) {
-        this.ethConvertValue = ethConvertValue;
+    public Currency() {
     }
 
     public String getSymbol() {
@@ -36,11 +25,27 @@ public class Currency {
         this.symbol = symbol;
     }
 
-    public Double getValueToConvert() {
-        return valueToConvert;
+    public double getBtcToCurrency() {
+        return btcToCurrency;
     }
 
-    public void setValueToConvert(Double valueToConvert) {
-        this.valueToConvert = valueToConvert;
+    public void setBtcToCurrency(double btcToCurrency) {
+        this.btcToCurrency = btcToCurrency;
+    }
+
+    public double getValueToConvert() {
+        return ValueToConvert;
+    }
+
+    public void setValueToConvert(double valueToConvert) {
+        ValueToConvert = valueToConvert;
+    }
+
+    public double getEtcToCurrency() {
+        return etcToCurrency;
+    }
+
+    public void setEtcToCurrency(double etcToCurrency) {
+        this.etcToCurrency = etcToCurrency;
     }
 }

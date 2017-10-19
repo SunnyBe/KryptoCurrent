@@ -11,9 +11,9 @@ public class ApiClient {
 
     private static final String BASE_URL = "https://min-api.cryptocompare.com/data/";
 
-    Retrofit retrofit =  null;
+    private static Retrofit retrofit =  null;
 
-    public Retrofit getRetrofit() {
+    public static Retrofit getRetrofit() {
 
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
