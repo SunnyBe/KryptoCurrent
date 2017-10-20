@@ -1,5 +1,6 @@
 package com.perror.app.kryptocurrent.activity;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     CurrencyListAdapter currencyListAdapter;
     ProgressBar progressBar;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     Currency BTCCurrency = new Currency();
     Currency ETHCurrency = new Currency();
@@ -59,7 +61,16 @@ public class MainActivity extends AppCompatActivity {
         //Bind my progress bar and the recylcer view
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_container);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiper_container);
+        swipeRefreshLayout.setColorSchemeResources(R.color.GREEN);
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadCurrencyConversion();
+
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -91,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<CurrencyResponse> call, Response<CurrencyResponse> response) {
                     //When There is a response set progress bar out of view
                     progressBar.setVisibility(View.GONE);
+                    swipeRefreshLayout.setRefreshing(false);
                     Log.d(TAG, "Load Response is on ... \n "+ response.raw()+"\n "+ response.body());
 
                     //Store the response from this call in a variable
