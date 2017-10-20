@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Krypto Current</string>
+
+    <string name="converter"> Convert</string>
+    <string name="send">Send</string>
+
+    <string name="converter_title">Conveter</string>
+
+    <string name="error"> Not Successfull Try again</string>
 </resources>

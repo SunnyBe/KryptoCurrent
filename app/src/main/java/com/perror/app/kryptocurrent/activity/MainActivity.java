@@ -33,6 +33,20 @@ public class MainActivity extends AppCompatActivity {
     CurrencyListAdapter currencyListAdapter;
     ProgressBar progressBar;
 
+    Currency BTCCurrency = new Currency();
+    Currency ETHCurrency = new Currency();
+    Currency USDCurrency = new Currency();
+    Currency NGNCurrency = new Currency();
+    Currency EURCurrency = new Currency();
+    Currency JPYCurrency = new Currency();
+    Currency CHFCurrency = new Currency();
+    Currency CADCurrency = new Currency();
+    Currency AUDCurrency = new Currency();
+    Currency ZARCurrency = new Currency();
+
+    List<Currency> currencyList;
+
+
     /**
      * This method is called when the activity is started
      * @param savedInstanceState
@@ -52,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
         //Set the progress bar to be rolling
         progressBar.setVisibility(View.VISIBLE);
 
+        setCurrenciesSymbol();
+
+        currencyList = new ArrayList<>();
+
         //Then update the recylcer view with the content from web
         loadCurrencyConversion();
     }
@@ -67,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             ApiService converterService = client.getRetrofit()
                     .create(ApiService.class);
 
-            Call<CurrencyResponse> currencyResponseCall = converterService.getBTCConversion();
+            final Call<CurrencyResponse> currencyResponseCall = converterService.getBTCConversion();
             currencyResponseCall.enqueue(new Callback<CurrencyResponse>() {
                 @Override
                 public void onResponse(Call<CurrencyResponse> call, Response<CurrencyResponse> response) {
@@ -78,16 +96,11 @@ public class MainActivity extends AppCompatActivity {
                     //Store the response from this call in a variable
                     CurrencyResponse responseFromApi = response.body();
 
-
-                    //Create a list to populate the recycler view using the response
-                    List<Currency> currencyList = new ArrayList<Currency>();
-
                     //make all the currency and add them to a list
-                    makeDifferentCurrencies(currencyList, responseFromApi);
+                    makeBtcDifferentCurrencies(currencyList, responseFromApi);
 
                     //Populate the recycler view
                     recyclerView.setAdapter(new CurrencyListAdapter(getApplicationContext(),currencyList));
-
                 }
 
                 @Override
@@ -97,95 +110,149 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            /**
+             * I want to create a dummy to take the eth conversion too
+             */
+
+            Call<CurrencyResponse> ethCall = converterService.getETHConversion();
+            ethCall.enqueue(new Callback<CurrencyResponse>() {
+                @Override
+                public void onResponse(Call<CurrencyResponse> call, Response<CurrencyResponse> response) {
+                    //handle the progress bar hide on response
+                    progressBar.setVisibility(View.GONE);
+                    Log.d(TAG, "Load Response is on ... \n "+ response.raw()+"\n "+ response.body());
+
+                    //Currency Response
+                    CurrencyResponse ethResponseFromApi = response.body();
+
+                    //make a list of currencies with their eth value
+                    makeEthDifferentCurrencies(currencyList,ethResponseFromApi);
+
+                    //Populate the recycler view
+                    recyclerView.setAdapter(new CurrencyListAdapter(getApplicationContext(),currencyList));
+
+                }
+
+                @Override
+                public void onFailure(Call<CurrencyResponse> call, Throwable t) {
+                    Log.d(TAG, "ERROR Not successful");
+                }
+            });
+
 
             /**
              * This is a dummy Test for getting Currency Response instead of CurrencyResponse response
              */
 
-//            Call<Currency> currencyCall = converterService.getCurrencyConvertion("USD");
-//            currencyCall.enqueue(new Callback<Currency>() {
-//                @Override
-//                public void onResponse(Call<Currency> call, Response<Currency> response) {
-//                    progressBar.setVisibility(View.GONE);
-//                    Log.d(TAG, "Load Response is on ...");
-//
-//                    Currency currencyRecieved = response.body();
-//                    List<Currency> currencyList = new ArrayList<Currency>();
-//                    currencyList.add(currencyRecieved);
-//
-//                    recyclerView.setAdapter(new CurrencyListAdapter(getApplicationContext(),currencyList));
-//                }
-//
-//                @Override
-//                public void onFailure(Call<Currency> call, Throwable t) {
-//                    progressBar.setVisibility(View.GONE);
-//                    Log.d(TAG, "Error Sir");
-//                }
-//            });
+
 
 
         }catch (Exception e){
             Log.d(TAG, "Exception currencies not recieved " + e.getMessage());
         }
-
-
     }
-    private void makeDifferentCurrencies(List<Currency> currencies ,CurrencyResponse currencyResponse){
 
-        Currency BTCCurrency = new Currency();
-        BTCCurrency.setBtcToCurrency(currencyResponse.getBTC());
+    private void setCurrenciesSymbol(){
 
-        Currency ETHCurrency = new Currency();
-        ETHCurrency.setBtcToCurrency(currencyResponse.getETH());
+        BTCCurrency.setSymbol("BTC");
+        ETHCurrency.setSymbol("ETH");
+        USDCurrency.setSymbol("USD");
+        NGNCurrency.setSymbol("NGN");
+        EURCurrency.setSymbol("EUR");
+        JPYCurrency.setSymbol("JPY");
+        CHFCurrency.setSymbol("CHF");
+        CADCurrency.setSymbol("CAD");
+        AUDCurrency.setSymbol("AUD");
+        ZARCurrency.setSymbol("ZAR");
+    }
 
-        Currency USDCurrency = new Currency();
-        USDCurrency.setBtcToCurrency(currencyResponse.getUSD());
+    private void makeEthDifferentCurrencies(List<Currency> currencies ,CurrencyResponse currencyResponse){
 
-        Currency NGNCurrency = new Currency();
-        NGNCurrency.setBtcToCurrency(currencyResponse.getNGN());
+//        Currency BTCCurrency = new Currency();
+        BTCCurrency.setEtcToCurrency(currencyResponse.getBTC());
 
-        Currency EURCurrency = new Currency();
-        EURCurrency.setBtcToCurrency(currencyResponse.getEUR());
+//        Currency ETHCurrency = new Currency();
+        ETHCurrency.setEtcToCurrency(currencyResponse.getETH());
 
-        Currency JPYCurrency = new Currency();
-        JPYCurrency.setBtcToCurrency(currencyResponse.getJPY());
+//        Currency USDCurrency = new Currency();
+        USDCurrency.setEtcToCurrency(currencyResponse.getUSD());
 
-        Currency CHFCurrency = new Currency();
-        CHFCurrency.setBtcToCurrency(currencyResponse.getCHF());
+//        Currency NGNCurrency = new Currency();
+        NGNCurrency.setEtcToCurrency(currencyResponse.getNGN());
 
-        Currency CADCurrency = new Currency();
-        CADCurrency.setBtcToCurrency(currencyResponse.getCAD());
+//        Currency EURCurrency = new Currency();
+        EURCurrency.setEtcToCurrency(currencyResponse.getEUR());
 
-        Currency AUDCurrency = new Currency();
-        AUDCurrency.setBtcToCurrency(currencyResponse.getAUD());
+//        Currency JPYCurrency = new Currency();
+        JPYCurrency.setEtcToCurrency(currencyResponse.getJPY());
 
-        Currency ZARCurrency = new Currency();
-        ZARCurrency.setBtcToCurrency(currencyResponse.getNGN());
+//        Currency CHFCurrency = new Currency();
+        CHFCurrency.setEtcToCurrency(currencyResponse.getCHF());
+
+//        Currency CADCurrency = new Currency();
+        CADCurrency.setEtcToCurrency(currencyResponse.getCAD());
+
+//        Currency AUDCurrency = new Currency();
+        AUDCurrency.setEtcToCurrency(currencyResponse.getAUD());
+
+//        Currency ZARCurrency = new Currency();
+        ZARCurrency.setEtcToCurrency(currencyResponse.getNGN());
+
+        setCurrenciesSymbol();
 
         currencies.add(BTCCurrency);
         currencies.add(ETHCurrency);
         currencies.add(NGNCurrency);
         currencies.add(USDCurrency);
         currencies.add(EURCurrency);
-        currencies.add(USDCurrency);
-        currencies.add(USDCurrency);
-        currencies.add(USDCurrency);
-        currencies.add(USDCurrency);
-        currencies.add(USDCurrency);
+        currencies.add(JPYCurrency);
+        currencies.add(CHFCurrency);
+        currencies.add(CADCurrency);
+        currencies.add(AUDCurrency);
+        currencies.add(ZARCurrency);
+    }
 
-        Currency testCurrency = new Currency();
-        testCurrency.setBtcToCurrency(67.0887);
-        currencies.add(testCurrency);
+    private void makeBtcDifferentCurrencies(List<Currency> currencies ,CurrencyResponse currencyResponse){
 
-////        Currency BTCCurrency = new Currency();
-////        BTCCurrency.setBtcConvertValue(currencyResponse.getBTC());
-//
-//        //currencyList.add(BTCCurrency);
-//        currencyList.add(testCurrency);
-//        currencyList.add(testCurrency);
-//        currencyList.add(testCurrency);
-//        currencyList.add(testCurrency);
-////
-//        return currencyList;
+        //        Currency BTCCurrency = new Currency();
+        BTCCurrency.setBtcToCurrency(currencyResponse.getBTC());
+
+//        Currency ETHCurrency = new Currency();
+        ETHCurrency.setBtcToCurrency(currencyResponse.getETH());
+
+//        Currency USDCurrency = new Currency();
+        USDCurrency.setBtcToCurrency(currencyResponse.getUSD());
+
+//        Currency NGNCurrency = new Currency();
+        NGNCurrency.setBtcToCurrency(currencyResponse.getNGN());
+
+//        Currency EURCurrency = new Currency();
+        EURCurrency.setBtcToCurrency(currencyResponse.getEUR());
+
+//        Currency JPYCurrency = new Currency();
+        JPYCurrency.setBtcToCurrency(currencyResponse.getJPY());
+
+//        Currency CHFCurrency = new Currency();
+        CHFCurrency.setBtcToCurrency(currencyResponse.getCHF());
+
+//        Currency CADCurrency = new Currency();
+        CADCurrency.setBtcToCurrency(currencyResponse.getCAD());
+
+//        Currency AUDCurrency = new Currency();
+        AUDCurrency.setBtcToCurrency(currencyResponse.getAUD());
+
+//        Currency ZARCurrency = new Currency();
+        ZARCurrency.setBtcToCurrency(currencyResponse.getNGN());
+
+//        currencies.add(BTCCurrency);
+//        currencies.add(ETHCurrency);
+//        currencies.add(NGNCurrency);
+//        currencies.add(USDCurrency);
+//        currencies.add(EURCurrency);
+//        currencies.add(JPYCurrency);
+//        currencies.add(CHFCurrency);
+//        currencies.add(CADCurrency);
+//        currencies.add(AUDCurrency);
+//        currencies.add(ZARCurrency);
     }
 }

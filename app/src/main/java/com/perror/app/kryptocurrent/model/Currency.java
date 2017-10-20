@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Currency {
-    private static String symbol;
+    private String symbol;
     private double btcToCurrency;
     private double etcToCurrency;
 
