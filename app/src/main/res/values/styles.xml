@@ -3,10 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
 
     <style name="CurrencyItem">
         <item name="android:padding">16dp</item>
@@ -15,23 +16,34 @@
 
     <style name="CurrencyItemLabel">
         <item name="android:layout_width">150dp</item>
-        <item name="android:padding">20dp</item>
+        <item name="android:padding">15dp</item>
         <item name="android:textSize">15dp</item>
-        <item name="android:textColor">@color/BLUE</item>
+        <item name="android:textColor">@color/ORANGEDARK</item>
     </style>
 
     <style name="CurrencyItemAmount">
         <item name="android:textSize"> 20dp</item>
         <item name="android:padding">5dp</item>
-        <item name="android:textColor">@color/PURPLE</item>
+        <item name="android:textColor">@color/ORANGEDARK</item>
         <item name="android:layout_centerHorizontal">true</item>
     </style>
 
     <style name="converterTitleStyle">
         <item name="android:textSize">20dp</item>
-        <item name="android:textColor">@color/PINK</item>
+        <item name="android:textColor">@color/ORANGEDARK</item>
+        <item name="android:background">@color/colorPrimary</item>
         <item name="android:padding">15dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="ConverterItemStyle">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/ORANGEDARK</item>
     </style>
 
 </resources>

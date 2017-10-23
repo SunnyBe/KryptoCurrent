@@ -15,22 +15,18 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-    @GET("price?fsym=BTC&tsyms=ETH,BTC,NGN,USD,EUR,JPY,GRP,CHF,CAD,AUD,ZAR&sign")
+    @GET("price?fsym=BTC&tsyms=ETH,BTC,NGN,USD,EUR,JPY,GRP,CHF,CAD,AUD,ZAR,BRL," +
+            "CLP,CZK,DKK,INR,UED,GBP,SGD,RUB,QAR,RON,GHC&sign")
     Call<CurrencyResponse> getBTCConversion();
 
-    @GET("price?fsym=BTC&tsyms=ETH,NGN,USD,EUR,JPY,GRP,CHF,CAD,AUD,ZAR")
-    Call<CurrencyResponse> getHTCConversion();
-
-    @GET("price?fsym=BTC&sign")
-    Call<CurrencyResponse> getCurrencyConvertion(@Query("tsyms") String queryType);
-
-    @GET("price?fsym=ETH&tsyms=ETH,BTC,NGN,USD,EUR,JPY,GRP,CHF,CAD,AUD,ZAR&sign")
+    @GET("price?fsym=ETH&tsyms=ETH,BTC,NGN,USD,EUR,JPY,GRP,CHF,CAD,AUD,ZAR,BRL," +
+            "CLP,CZK,DKK,INR,UED,GBP,SGD,RUB,QAR,RON,GHC&sign")
     Call<CurrencyResponse> getETHConversion();
 
-    @GET("price?fsym=BTC&tsyms=USD&sign")
-    Call<Currency> getBTCtoUSD();
-
-    @GET("price?fsym=BTC&tsyms={sign}")
-    Call<Currency> getBTCtoCurrency(@Path("sign") String currency);
+//    @GET("price?fsym=BTC&tsyms=ETH,BTC,NGN,USD,EUR,JPY,GRP&sign")
+//    Call<CurrencyResponse> getBTCConversion();
+//
+//    @GET("price?fsym=ETH&tsyms=ETH,BTC,NGN,USD,EUR,JPY,GRP&sign")
+//    Call<CurrencyResponse> getETHConversion();
 
 }

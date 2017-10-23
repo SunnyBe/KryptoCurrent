@@ -1,34 +1,34 @@
 package com.perror.app.kryptocurrent.adapter;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.perror.app.kryptocurrent.activity.DetailConverterActivity;
 import com.perror.app.kryptocurrent.R;
 import com.perror.app.kryptocurrent.model.Currency;
-import com.perror.app.kryptocurrent.model.CurrencyResponse;
 
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by ndu on 10/17/17.
  */
 
 public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapter.ViewHolder> {
+    //initialize neede objects
     Context context;
     List<Currency> currencies;
-//    Currency currency;
 
+    /**
+     * The Adapter constructor
+      * @param context
+     * @param currencies
+     */
     public CurrencyListAdapter(Context context, List<Currency> currencies) {
         this.context = context;
         this.currencies = currencies;
@@ -56,43 +56,20 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
         //make a date object for the current date and time
         Date date = new Date();
 
-        holder.btcContainer.setOnClickListener(new View.OnClickListener() {
+        holder.relativeItemContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog = new Dialog(context);
-                dialog.setCancelable(true);
+                Intent detailConverterIntent = new Intent(context, DetailConverterActivity.class);
+                detailConverterIntent.putExtra("btcValue", String.valueOf(currency.getBtcToCurrency()));
+                detailConverterIntent.putExtra("ethValue", String.valueOf(currency.getEtcToCurrency()));
+                detailConverterIntent.putExtra("symbol", String.valueOf(currency.getSymbol()));
+                detailConverterIntent.putExtra("date", "19.45" );
+                detailConverterIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                dialog.show();
-                Log.d("CurrencyListActivity:", "Currency Converter Dialog on");
+                context.startActivity(detailConverterIntent);
             }
         });
 
-        holder.ethToCurrency.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder convertDialog = new AlertDialog.Builder(context);
-                convertDialog.setMessage("Enter Conversion Value: ");
-                convertDialog.setTitle("ETH - "+currency.getSymbol()+" Conveter: ");
-                convertDialog.setPositiveButton("Convert", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(context,"Conversion Complete ",Toast.LENGTH_SHORT).show();
-                        Log.d("CurrencyListActivity:", "Currency Converter Dialog on");
-                    }
-                });
-                convertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Dialog dialog = new Dialog(context);
-                        dialog.setCancelable(true);
-                        dialog.show();
-                        Log.d("CurrencyListActivity:", "Currency Converter Dialog complete");
-
-                    }
-                });
-                convertDialog.show();
-            }
-        });
     }
 
     @Override
@@ -102,8 +79,8 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView btcToCurrency, ethToCurrency, currencySymbol,dateAndTime;
-        ViewGroup btcContainer, ethContainer;
-        public ViewHolder(View itemView) {
+        ViewGroup btcContainer, ethContainer,relativeItemContainer;
+        public ViewHolder(final View itemView) {
             super(itemView);
 
             btcToCurrency = itemView.findViewById(R.id.btc_section_view_amount);
@@ -113,6 +90,9 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
 
             btcContainer = itemView.findViewById(R.id.btc_container);
             ethContainer = itemView.findViewById(R.id.eth_container);
+
+            relativeItemContainer = itemView.findViewById(R.id.relative_item_container);
+
         }
     }
 }

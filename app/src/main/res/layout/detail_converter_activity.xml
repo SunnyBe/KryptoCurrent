@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/symbol_of_currency"
+        style="@style/converterTitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        tools:text="NGN" />
+
+    <LinearLayout
+        android:id="@+id/converter_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="#FFEC8B"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/currency_convert_input"
+            style="@style/ConverterItemStyle"
+            android:hint="Currency Value" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="BTC Value: "
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/BTC_converted_text"
+                style="@style/ConverterItemStyle"
+                android:hint="BTC value" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="ETH Value: "
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/ETH_converted_text"
+                style="@style/ConverterItemStyle"
+                android:hint="ETH value" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/currency_convert_button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/GOLD"
+            android:text="convert" />
+    </LinearLayout>
+
+</LinearLayout>
