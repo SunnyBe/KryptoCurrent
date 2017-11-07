@@ -6,12 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.perror.app.kryptocurrent.activity.DetailConverterActivity;
 import com.perror.app.kryptocurrent.R;
 import com.perror.app.kryptocurrent.model.Currency;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +22,7 @@ import java.util.List;
  */
 
 public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapter.ViewHolder> {
-    //initialize neede objects
+    //initialize needed objects
     Context context;
     List<Currency> currencies;
 
@@ -54,16 +56,20 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
         holder.currencySymbol.setText(currency.getSymbol().toString());
 
         //make a date object for the current date and time
+        SimpleDateFormat simpleDate = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
         Date date = new Date();
+        final String dateText = simpleDate.format(date);
 
-        holder.relativeItemContainer.setOnClickListener(new View.OnClickListener() {
+        holder.dateAndTime.setText(dateText);
+
+        holder.proceedConversionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent detailConverterIntent = new Intent(context, DetailConverterActivity.class);
                 detailConverterIntent.putExtra("btcValue", String.valueOf(currency.getBtcToCurrency()));
                 detailConverterIntent.putExtra("ethValue", String.valueOf(currency.getEtcToCurrency()));
                 detailConverterIntent.putExtra("symbol", String.valueOf(currency.getSymbol()));
-                detailConverterIntent.putExtra("date", "19.45" );
+                detailConverterIntent.putExtra("date", dateText );
                 detailConverterIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 context.startActivity(detailConverterIntent);
@@ -80,6 +86,7 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView btcToCurrency, ethToCurrency, currencySymbol,dateAndTime;
         ViewGroup btcContainer, ethContainer,relativeItemContainer;
+        ImageView proceedConversionButton;
         public ViewHolder(final View itemView) {
             super(itemView);
 
@@ -92,6 +99,9 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
             ethContainer = itemView.findViewById(R.id.eth_container);
 
             relativeItemContainer = itemView.findViewById(R.id.relative_item_container);
+
+            proceedConversionButton = itemView.findViewById(R.id.conversion_button);
+
 
         }
     }

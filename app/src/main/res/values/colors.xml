@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F0E68C</color>
-    <color name="colorPrimaryDark">#FFD700</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#FFB300</color>
+    <color name="colorPrimaryDark">#FF8F00</color>
+    <color name="colorAccent">#E65100</color>
 
     <!--BTC customized background-->
-    <color name="btcBackround">#FFF8DC</color>
-    <color name="ethBackround">#CDC8B1</color>
+    <color name="btcBackround">#FFE57F</color>
+    <color name="ethBackround">#F5F5F5</color>
+
+    <!-- Convert button background color -->
+    <color name="proceedConvertButton">#FFECB3</color>
+
+    <!-- Currency Header with date -->
+    <color name="headerWithDate">#FFECB3</color>
 
 
     <color name="WHITE">#ffffff</color>

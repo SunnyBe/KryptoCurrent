@@ -3,73 +3,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/symbol_of_currency"
-        style="@style/converterTitleStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        tools:text="NGN" />
-
     <LinearLayout
-        android:id="@+id/converter_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="#FFEC8B"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/currency_convert_input"
-            style="@style/ConverterItemStyle"
-            android:hint="Currency Value" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_exchange"/>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/symbol_of_currency"
+            style="@style/converterTitleStyle"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="BTC Value: "
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/BTC_converted_text"
-                style="@style/ConverterItemStyle"
-                android:hint="BTC value" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="ETH Value: "
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/ETH_converted_text"
-                style="@style/ConverterItemStyle"
-                android:hint="ETH value" />
-        </LinearLayout>
-
-
-        <Button
-            android:id="@+id/currency_convert_button"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/GOLD"
-            android:text="convert" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            tools:text="NGN" />
     </LinearLayout>
 
+    <!-- Base Currency and BTC-->
+    <LinearLayout
+        android:id="@+id/conversion_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp">
+
+        <!-- Base Currency to Bitcoin -->
+        <LinearLayout
+            android:id="@+id/base_to_bitcoin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/proceedConvertButton"
+            android:layout_marginBottom="15dp">
+
+            <ImageView
+                android:id="@+id/base_dynamic_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_exchange"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Base To Bitcoin"
+                style="@style/TextAppearance.AppCompat.Body2"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_bitcoin"/>
+        </LinearLayout>
+
+        <!-- Bitcoin to base Currency -->
+        <LinearLayout
+            android:id="@+id/bitcoin_to_base_conversion"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/btcBackround"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_bitcoin" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bitcoin To Base"
+                style="@style/TextAppearance.AppCompat.Body2"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_exchange"
+                />
+        </LinearLayout>
+
+        <!-- Base Currency and ETH -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+
+            <!-- Base Currency to ETH -->
+            <LinearLayout
+                android:id="@+id/base_to_etherum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/proceedConvertButton"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_exchange"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Base To Etherum"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_etherum"/>
+            </LinearLayout>
+
+            <!-- ETH to base Currency -->
+            <LinearLayout
+                android:id="@+id/etherum_base_conversion"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/ethBackround"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_etherum" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Etherum To Base"
+                    style="@style/TextAppearance.AppCompat.Body2"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_exchange"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

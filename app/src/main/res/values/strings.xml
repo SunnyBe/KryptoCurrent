@@ -7,4 +7,5 @@
     <string name="converter_title">Conveter</string>
 
     <string name="error"> Not Successfull Try again</string>
+    <string name="converter_content">The box provided is for you to enter the amount that you want to convert, Click the button to get your answer or Dismis to go back</string>
 </resources>

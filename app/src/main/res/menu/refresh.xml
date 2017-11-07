@@ -4,6 +4,7 @@
     <item
         android:id="@+id/refresh"
         app:showAsAction="always"
-        android:title="refresh"/>
+        android:title="refresh"
+        android:icon="@drawable/icon_refresh"/>
 
 </menu>

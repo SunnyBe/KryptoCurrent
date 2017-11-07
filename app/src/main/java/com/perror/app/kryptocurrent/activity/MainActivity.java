@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     SwipeRefreshLayout swipeRefreshLayout;
     TextView notConnected;
+    Toolbar toolbar;
 
     Currency BTCCurrency = new Currency();
     Currency ETHCurrency = new Currency();
@@ -80,15 +82,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Bind my progress bar and the recylcer view
+        //Bind my progress bar and the recylcer view and other views
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_container);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiper_container);
         swipeRefreshLayout.setColorSchemeResources(R.color.GREEN);
-
         notConnected = (TextView) findViewById(R.id.not_connecting);
-
-        //viewPresenter = new MainViewPresenter(getApplicationContext());
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
         currencyList = new ArrayList<>();
 
-        //Then update the recylcer view with the content from web
+        //Then update the recycler view with the content from web
         loadCurrencyConversion();
     }
 
